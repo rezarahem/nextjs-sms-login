@@ -9,7 +9,6 @@ export async function OTP(phone: string) {
   );
   const { data, status, statusText } = res;
 
-  console.log(data);
 
   return {
     data,
