@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,12 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html dir='rtl' lang='fa' className={`${myFont.variable} font-sans`}>
-      <body>
-        {children}
-        <div dir='ltr'>
-          <Toaster position='bottom-center' />
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

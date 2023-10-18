@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckEmailAction } from '@/actions/CheckEmailAction';
+import { CheckPhoneAction } from '@/actions/CheckPhoneAction';
 import { OTP } from '@/actions/sms';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPhoneNumber, setIsPhoneNumber] = useState('');
   const [isVCode, setIsVCode] = useState('');
-  
+
   const {
     register,
     handleSubmit,
@@ -20,12 +20,12 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  const checkEmail = async (data: FieldValues) => {
+  const checkPhone = async (data: FieldValues) => {
     setIsSubmitting(true);
 
     const { phoneNumber } = data;
 
-    const res = await CheckEmailAction(phoneNumber);
+    const res = await CheckPhoneAction(phoneNumber);
 
     if (!res) return;
 
@@ -44,7 +44,7 @@ export default function LoginPage() {
     const { uCode } = data;
     const phone = isPhoneNumber;
     const verification = uCode === isVCode;
-    
+
     if (!verification) return null;
 
     signIn('credentials', {
@@ -56,7 +56,7 @@ export default function LoginPage() {
 
   return (
     <form
-      onSubmit={handleSubmit(isStepTwo ? verifyCode : checkEmail)}
+      onSubmit={handleSubmit(isStepTwo ? verifyCode : checkPhone)}
       className='flex flex-col justify-center items-center gap-y-3 pt-36'
     >
       {isStepTwo ? (

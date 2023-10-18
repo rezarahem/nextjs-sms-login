@@ -2,7 +2,7 @@
 
 import Prisma from '@/libs/prisma';
 
-export async function CheckEmailAction(phone: string) {
+export async function CheckPhoneAction(phone: string) {
   const user = await Prisma.user.findUnique({
     where: {
       phone,
