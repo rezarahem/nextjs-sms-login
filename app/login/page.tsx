@@ -52,9 +52,6 @@ export default function LoginPage() {
       callbackUrl: '/',
     });
     reset();
-
-    // setIsStepTwo(true);
-    // console.log('verifyCode');
   };
 
   return (
